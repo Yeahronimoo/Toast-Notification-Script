@@ -221,7 +221,7 @@ function Get-GivenName() {
 	            $DisplayName = (Get-ChildItem -Path $RegKey | Where-Object {$_.GetValue("LoggedOnUserSID") -eq $LoggedOnSID} | Select-Object -First 1).GetValue("LoggedOnDisplayName")
 		        if ($DisplayName) {
                     Write-Log -Message "Given name found in WMI with the CCM client"
-			        $GivenName = $DisplayName.Split()[0].Trim()
+			        $GivenName = $DisplayName.Split()[1].Trim()
                     $GivenName
 		        }
 		        else {
@@ -933,7 +933,7 @@ if ($GreetGivenName -eq "True") {
     if (($Hour -ge 0) -AND ($Hour -lt 12)) {
         $Greeting = $GreetMorningText
     }
-    elseif (($Hour -ge 12) -AND ($Hour -lt 16)) {
+    elseif (($Hour -ge 12) -AND ($Hour -lt 18)) {
         $Greeting = $GreetAfternoonText
     }
     else {
